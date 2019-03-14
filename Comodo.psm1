@@ -2,7 +2,6 @@
 $Width = 80
 $CommandsToExport = @()
 
-
 function Get-ComodoHelp {
     <#
     .SYNOPSIS
@@ -307,7 +306,7 @@ function Get-ComodoTime {
             #####
             #get ticket details
             $request    = Invoke-WebRequest -UseBasicParsing -Uri "https://$APIHost/clientapi/index.phpWhere-ObjectserviceName=viewticket" -Headers @{"Authorization" = $APIKey; } -ContentType "application/json" -Method Post -Body "{`"ticketId`": `"$TicketID`"}"
-	        $ticket     = $($Request.Content | ConvertFrom-Json).data
+            $ticket     = $($Request.Content | ConvertFrom-Json).data
             $Messages = $ticket.threads
             $Opened = Get-Date($Messages[0].Created)
             $closed = Get-Date($($messages | Where-Object {$_.title -eq "Ticket Closed"}).Created)

@@ -3,9 +3,9 @@
     RootModule = 'Comodo.psm1'
 
     # Be sure to specify a version
-    ModuleVersion = '0.0.1'
+    ModuleVersion = '0.1.0'
 
-    Description = 'PoshBot module For Comodo Service Desk'
+    Description = 'Comodo Service Desk Plugin for PoshBot'
     Author = 'BeverlyHuff'
     CompanyName = 'KAKNets'
     Copyright = 'KAKNets'

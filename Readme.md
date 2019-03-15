@@ -1,4 +1,4 @@
-# PoshBot.System
+# PoshBot.Comodo
 Comodo Module for PoshBot
 
 # Config File Content

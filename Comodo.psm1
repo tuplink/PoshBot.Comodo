@@ -72,7 +72,7 @@ function Get-ComodoLastMSG {
     [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
     try {
         #check if $TicketID is Number
-        0 + $x | Out-Null
+        0 + $TicketID | Out-Null
         $request    = Invoke-WebRequest -UseBasicParsing -Uri "https://$APIHost/clientapi/index.phpWhere-ObjectserviceName=viewticket" -Headers @{"Authorization" = $APIKey; } -ContentType "application/json" -Method Post -Body "{`"ticketId`": `"$TicketID`"}"
 	    $ticket     = $($Request.Content | ConvertFrom-Json).data
         $ticket.threads = $ticket.threads | Where-Object {$_.body -notmatch "Ticket closed (.*)|Stage `".*`" completed|Ticket claimed.*"} | Where-Object {$_.title -notmatch "New Collaborator .*|New Ticket|Ticket Marked Overdue"}
@@ -123,7 +123,7 @@ function Get-ComodoStatus {
     [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
     try {
         #check if $TicketID is Number
-        0 + $x | Out-Null
+        0 + $TicketID | Out-Null
         $request    = Invoke-WebRequest -UseBasicParsing -Uri "https://$APIHost/clientapi/index.phpWhere-ObjectserviceName=viewticket" -Headers @{"Authorization" = $APIKey; } -ContentType "application/json" -Method Post -Body "{`"ticketId`": `"$TicketID`"}"
 	    $ticket     = $($Request.Content | ConvertFrom-Json).data
         $status     = $ticket.status
@@ -157,7 +157,7 @@ function Get-ComodoAllMSG {
     [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
     try {
         #check if $TicketID is Number
-        0 + $x | Out-Null
+        0 + $TicketID | Out-Null
         $request    = Invoke-WebRequest -UseBasicParsing -Uri "https://$APIHost/clientapi/index.phpWhere-ObjectserviceName=viewticket" -Headers @{"Authorization" = $APIKey; } -ContentType "application/json" -Method Post -Body "{`"ticketId`": `"$TicketID`"}"
 	    $ticket     = $($Request.Content | ConvertFrom-Json).data
         $replyCount = $ticket.threads.count
@@ -210,7 +210,7 @@ function New-ComodoReply {
     [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
     try {
         #check if $TicketID is Number
-        0 + $x | Out-Null
+        0 + $TicketID | Out-Null
         $email = $global:PoshBotContext.CallingUserInfo.Email
         $request    = Invoke-WebRequest -UseBasicParsing -Uri "https://$APIHost/clientapi/index.phpWhere-ObjectserviceName=ticketpostreply" -Headers @{"Authorization" = $APIKey; } -ContentType "application/json" -Method Post -Body "{`"ticketId`": `"$TicketID`", `"email`": `"$email`", `"message`": `"$message`"}"
         if ($request.statusCode -ne "200") {
@@ -246,7 +246,7 @@ function Set-ComodoClose {
     [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
     try {
         #check if $TicketID is Number
-        0 + $x | Out-Null
+        0 + $TicketID | Out-Null
         $email = $global:PoshBotContext.CallingUserInfo.Email
         #get ticket status
         $request    = Invoke-WebRequest -UseBasicParsing -Uri "https://$APIHost/clientapi/index.phpWhere-ObjectserviceName=viewticket" -Headers @{"Authorization" = $APIKey; } -ContentType "application/json" -Method Post -Body "{`"ticketId`": `"$TicketID`"}"
@@ -297,7 +297,7 @@ function Get-ComodoTime {
     [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
     try {
         #check if $TicketID is Number
-        0 + $x | Out-Null
+        0 + $TicketID | Out-Null
         $request    = Invoke-WebRequest -UseBasicParsing -Uri "https://$APIHost/clientapi/index.phpWhere-ObjectserviceName=viewticket" -Headers @{"Authorization" = $APIKey; } -ContentType "application/json" -Method Post -Body "{`"ticketId`": `"$TicketID`"}"
 	    $ticket     = $($Request.Content | ConvertFrom-Json).data
         if ($ticket.status -ne "closed") {
